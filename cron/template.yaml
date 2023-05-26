@@ -9,7 +9,7 @@ Globals:
     MemorySize: 128
 
 Resources:
-  SamPythonTemplateCron:
+  SamPythonTemplateCron: ########################################### Stack名稱(一一對應)
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: src/
@@ -31,4 +31,4 @@ Resources:
 Outputs:
   ScheduledFunction:
     Description: "Scheduled Lambda Function ARN"
-    Value: !GetAtt SamPythonTemplateCron.Arn
+    Value: !GetAtt SamPythonTemplateCron.Arn ####################### Stack名稱(一一對應)
