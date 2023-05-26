@@ -20,6 +20,12 @@ Resources:
           TZ: Asia/Taipei
           NOTIFY_TOKEN: your_notify_token
           TEST_MODE: False
+          DB_HOST: database.qq123.ap-northeast-1.rds.amazonaws.com
+          DB_PORT: 5432
+          DB_DATABASE: qq123
+          DB_USER: postgres
+          DB_PASSWORD: qq123
+
       Architectures:
         - x86_64
       Events:
