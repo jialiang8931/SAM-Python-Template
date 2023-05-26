@@ -15,7 +15,6 @@ class Setting:
             self.props[name] = value
         return 
 
-
 def get_config_setting():
     setting = Setting()
     setting.notify_token = os.getenv("NOTIFY_TOKEN")
