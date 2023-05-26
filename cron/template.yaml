@@ -20,12 +20,15 @@ Resources:
           TZ: Asia/Taipei
           NOTIFY_TOKEN: your_notify_token
           TEST_MODE: False
+<<<<<<< HEAD
           DB_HOST: db.qq123.az.rds.sad.qq123
           DB_PORT: 5432
           DB_DATABASE: qq123
           DB_USER: postgres
           DB_PASSWORD: qq123
 
+=======
+>>>>>>> parent of 4e3dc87 (chore: add the config of database)
       Architectures:
         - x86_64
       Events:
