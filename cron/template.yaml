@@ -1,0 +1,34 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  SamPythonTemplateCron
+
+Globals:
+  Function:
+    Timeout: 300
+    MemorySize: 128
+
+Resources:
+  SamPythonTemplateCron:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.9
+      Environment:
+        Variables:
+          TZ: Asia/Taipei
+          NOTIFY_TOKEN: your_notify_token
+          TEST_MODE: False
+      Architectures:
+        - x86_64
+      Events:
+        ScheduleEvent:
+          Type: Schedule # 使用 Schedule 類型的事件觸發器
+          Properties:
+            Schedule: rate(1 minutes) # 設定每一分鐘執行一次的排程
+
+Outputs:
+  ScheduledFunction:
+    Description: "Scheduled Lambda Function ARN"
+    Value: !GetAtt SamPythonTemplateCron.Arn
