@@ -1,15 +1,15 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  SamPythonTemplateCron
+  SamPythonTemplateFastAPI
 
 Globals:
   Function:
     Timeout: 300
-    MemorySize: 128
+    MemorySize: 512
 
 Resources:
-  SamPythonTemplateCron: ########################################### Stack名稱(一一對應)
+  SamPythonTemplateFastAPI:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: src/
@@ -18,23 +18,33 @@ Resources:
       Environment:
         Variables:
           TZ: Asia/Taipei
-          NOTIFY_TOKEN: your_notify_token
           TEST_MODE: False
           DB_HOST: db.qq123.az.rds.sad.qq123
           DB_PORT: 5432
           DB_DATABASE: qq123
           DB_USER: postgres
           DB_PASSWORD: qq123
+          API_TITLE: 測試 FastAPI
+          API_DESCRIPTION: 描述這個API的區塊
+          API_ROOT_PATH: / # /docs locate 的區域
 
       Architectures:
         - x86_64
+
       Events:
-        ScheduleEvent:
-          Type: Schedule # 使用 Schedule 類型的事件觸發器
+        HelloWorld:
+          Type: Api
           Properties:
-            Schedule: rate(1 minutes) # 設定每一分鐘執行一次的排程
+            Path: /{proxy+}
+            Method: any
 
 Outputs:
-  ScheduledFunction:
-    Description: "Scheduled Lambda Function ARN"
-    Value: !GetAtt SamPythonTemplateCron.Arn ####################### Stack名稱(一一對應)
+  SamPythonTemplateFastAPI:
+    Description: "API Gateway endpoint URL for HelloWorld function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/{proxy+}"
+  SamPythonTemplateFastAPI:
+    Description: "HelloWorld Lambda Function ARN"
+    Value: !GetAtt SamPythonTemplateFastAPI.Arn
+  HelloWorldFunctionIamRole:
+    Description: "Implicit IAM Role created for HelloWorld function"
+    Value: !GetAtt SamPythonTemplateFastAPI.Arn

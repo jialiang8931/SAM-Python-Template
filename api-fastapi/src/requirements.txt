@@ -1,2 +1,4 @@
 requests
 pg8000
+mangum
+fastapi
