@@ -25,6 +25,7 @@ Resources:
           DB_DATABASE: qq123
           DB_USER: postgres
           DB_PASSWORD: qq123
+          
 
       Architectures:
         - x86_64
